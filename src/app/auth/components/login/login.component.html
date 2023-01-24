@@ -1,0 +1,40 @@
+<p>login works!</p>
+<form [formGroup]="loginForm">
+  <label for="email">Email</label>
+  <input
+    type="text"
+    name=""
+    id="email"
+    placeholder="email"
+    formControlName="email"
+  />
+  <div
+    *ngIf="loginForm.get('email')?.errors?.['required']"
+  >
+    Debe llenar el campo
+  </div>
+  <div
+    *ngIf="loginForm.get('email')?.errors?.['email']"
+  >
+    Debe ser un correo valido
+  </div>
+  <label for="password">Password</label>
+  <input
+    type="password"
+    name=""
+    id="password"
+    placeholder="password"
+    formControlName="password"
+  />
+  <div
+    *ngIf="loginForm.get('password')?.errors?.['required']"
+  >
+    Contraseña requerida
+  </div>
+  <div
+    *ngIf="loginForm.get('password')?.errors?.['minlength']"
+  >
+    Minimo 5 caracteres
+  </div>
+  <button type="button" (click)="login()" [disabled]="!loginForm.valid">Logearse</button>
+</form>
