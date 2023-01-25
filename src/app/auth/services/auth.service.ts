@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { LoginI } from '../interface/login.interface';
 import { RegisterI } from '../interface/register.interface';
@@ -23,7 +23,7 @@ export class AuthService {
   }
   loggedIn():boolean {
     if (localStorage.getItem('token')) {
-      return true;
+      return true
     }
     return false;
   }

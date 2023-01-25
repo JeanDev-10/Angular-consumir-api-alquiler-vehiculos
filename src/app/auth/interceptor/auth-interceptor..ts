@@ -31,6 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
 			} else {
         if(error.status===401){
           this.authService.deleteToken();
+          console.log("redireccionar interceptor")
           this.router.navigate(['/auth/login']);
         }
 				if (error.status !==200) {

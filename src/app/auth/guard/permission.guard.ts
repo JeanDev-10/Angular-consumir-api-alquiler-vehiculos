@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {  ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionGuard implements CanActivate {
+export class PermissionGuard implements CanActivate  {
   constructor(private readonly authService:AuthService,
     private router: Router){}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if(this.isLogin()){
       return true;
     }
     return false;
   }
+
   isLogin():boolean{
     if(this.authService.loggedIn()) {
-      return true;
+      return true
     }
+    console.log("redireccionar")
     this.router.navigate(['/auth/login']);
     return false;
   }

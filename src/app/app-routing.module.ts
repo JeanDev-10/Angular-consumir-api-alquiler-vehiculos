@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PermissionGuard } from './auth/guard/permission.guard';
 import { Permission2Guard } from './auth/guard/permission2.guard';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {  DashboardPageComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    component: DashboardPageComponent,
     canActivate: [PermissionGuard],
     children: [
       {
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/dashboard',
+    redirectTo: '',
   },
 ];
 

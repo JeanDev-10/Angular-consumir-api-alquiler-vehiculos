@@ -25,9 +25,8 @@ export class RegisterComponent {
   register():void{
     if(this.registerForm.valid){
       this.authService.register(this.registerForm.value).subscribe((data:any)=>{
-        if(data.headers.status==200){
+        console.log(data)
           this.router.navigate(['/auth/login']);
-        }
       }/* ,(error:any)=>{
         console.log(error.error.messages)
         this.limpiarForm()

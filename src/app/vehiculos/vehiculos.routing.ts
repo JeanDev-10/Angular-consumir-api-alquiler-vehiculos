@@ -4,6 +4,10 @@ import { TableVehiculoComponent } from './components/table-vehiculo/table-vehicu
 
 const routes: Routes = [
   {
+    path: '',pathMatch:'full',
+    redirectTo:'/dashboard'
+  },
+  {
     path: 'vehiculos',pathMatch:'full',
     component:TableVehiculoComponent
   },
@@ -14,6 +18,10 @@ const routes: Routes = [
   {
     path:'vehiculos-alquilados',pathMatch:'full',
     component:TableVehiculoComponent
+  },
+  {
+    path:'**',
+    redirectTo:'/dashboard'
   },
 ];
 
