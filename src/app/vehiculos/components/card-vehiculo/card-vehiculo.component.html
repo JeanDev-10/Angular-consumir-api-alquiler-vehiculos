@@ -1,0 +1,27 @@
+<a *ngIf="user?.user?.rol=='admin'" routerLink="/dashboard/vehiculos/create" class="btn btn-primary">crear vehiculos</a>
+<div class="row gap-5">
+  <div class="col-auto col-md-3 mx-auto" *ngFor="let auto of autos">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"> Modelo: {{auto.modelo}} </h3>
+      </div>
+      <div class="card-body">
+        <img src={{auto.url}} alt="" class="img-fluid">
+        <p class="card-text">Marca:  {{auto.marca}}  </p>
+      </div>
+      <div *ngIf="user?.user?.rol=='admin'" class="card-footer">
+        <button class="btn btn-outline-info" [routerLink]="['/dashboard/vehiculos/edit',auto.id]">
+          Editar
+        </button>
+        <button class="btn btn-outline-danger" (click)="onDelete(auto.id)">
+          Eliminar
+        </button>
+      </div>
+      <div *ngIf="user?.user?.rol=='cliente'" class="card-footer">
+        <button class="btn btn-outline-info" [routerLink]="['/dashboard/vehiculos/alquilar/',auto.id]" >
+          Alquilar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

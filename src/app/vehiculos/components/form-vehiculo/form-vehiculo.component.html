@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <form  [formGroup]="vehiculoForm" >
+      <div class="mb-3">
+        <label for="modelo" class="form-label">Modelo</label>
+        <input
+          type="text"
+          class="form-control"
+          id="modelo"
+          aria-describedby="emailHelp"
+          formControlName="modelo"
+
+        />
+        <div
+          *ngIf="vehiculoForm.get('modelo')?.errors?.['required']"
+          class="form-text text-danger"
+        >
+          Debe llenar el campo
+        </div>
+        <div
+          *ngIf="vehiculoForm.get('modelo')?.errors?.['minlength']"
+          class="form-text text-danger"
+        >
+          Debe ser al menos 5 caracteres
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="marca" class="form-label">Marca</label>
+        <input
+          type="text"
+          class="form-control"
+          id="marca"
+          aria-describedby="emailHelp"
+          formControlName="marca"
+
+        />
+        <div
+          *ngIf="vehiculoForm.get('marca')?.errors?.['required']"
+          class="form-text text-danger"
+        >
+          Debe llenar el campo
+        </div>
+        <div
+          *ngIf="vehiculoForm.get('marca')?.errors?.['minlength']"
+          class="form-text text-danger"
+        >
+          Debe ser al menos 5 caracteres
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input
+          type="file"
+          class="form-control form-control-sm"
+          id="image"
+          aria-describedby="emailHelp"
+          formControlName="image"
+          accept="image/*"
+          (change)="subiendo($event)"
+        />
+        <img src="{{image}}" alt="" class="img-fluid w-25">
+        <div
+          *ngIf="!this.image"
+          class="form-text text-danger"
+        >
+          Debe llenar el campo
+        </div>
+        <!-- <div
+          *ngIf="vehiculoForm.get('image')?.errors?.['required']"
+          class="form-text text-danger"
+        >
+          Debe llenar el campo
+        </div> -->
+      </div>
+      <button (click)="onSubmit()" class="btn btn-sm btn-primary" [disabled]="!vehiculoForm.valid"  >{{Vehiculo?"Editar":"guardar"}}</button>
+    </form>
+    {{vehiculoForm.value|json}}
+<!--   <img src="{{vehiculoForm.get('image')}}" alt=""> -->
+  </div>
+</div>

@@ -10,6 +10,8 @@ export class PermissionGuard implements CanActivate  {
   constructor(private readonly authService:AuthService,
     private router: Router){}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    console.log("token guard")
+
     if(this.isLogin()){
       return true;
     }

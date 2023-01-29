@@ -12,6 +12,8 @@ export class Permission2Guard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      console.log("login register guard")
+
       if(this.isLogin()){
         return true;
       }

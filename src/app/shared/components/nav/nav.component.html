@@ -1,30 +1,62 @@
-<ul>
-  <li>
-    <a
-      routerLink=" " routerLinkActive="router-link-active"
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink=" " routerLinkActive="active"
       >Dashboard</a
     >
-  </li>
-  <li>
-    <a
-      routerLink="vehiculos" routerLinkActive="router-link-active"
-      >Vehiculos</a
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
-  </li>
-  <li>
-    <a
-      routerLink="vehiculos-alquilados" routerLinkActive="router-link-active"
-      >Vehiculos alquilados</a
-    >
-  </li>
-  <li>
-    <a
-      routerLink="mis-vehiculos" routerLinkActive="router-link-active"
-      ariaCurrentWhenActive="page"
-      >mis Vehiculos</a
-    >
-  </li>
-</ul>
-<h1>Bienvenido usuario rol</h1>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul
+        class="navbar-nav d-flex align-items-center "
+      >
+        <li class="nav-item">
+          <a routerLink="vehiculos" class="nav-link" routerLinkActive="active"
+            >Vehiculos</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="user?.user?.rol == 'admin'">
+          <a
+            routerLink="vehiculos-alquilados"
+            class="nav-link"
+            routerLinkActive="active"
+            >Vehiculos alquilados</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="user?.user?.rol == 'cliente'">
+          <a
+            class="nav-link"
+            routerLink="mis-vehiculos"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >mis Vehiculos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a *ngIf="user?.user" class="nav-link">
+            Bienvenido {{ user.user.nombre_usuario | titlecase }}-
+            {{ user.user.rol | titlecase }}
+          </a>
 
-<button (click)="logout()">Logout</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="logout()" class="btn btn-outline-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+

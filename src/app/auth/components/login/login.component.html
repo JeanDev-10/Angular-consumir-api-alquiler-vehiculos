@@ -1,40 +1,68 @@
-<p>login works!</p>
-<form [formGroup]="loginForm">
-  <label for="email">Email</label>
-  <input
-    type="text"
-    name=""
-    id="email"
-    placeholder="email"
-    formControlName="email"
-  />
-  <div
-    *ngIf="loginForm.get('email')?.errors?.['required']"
-  >
-    Debe llenar el campo
+<div class="row mt-5">
+  <div class="col-md-6">
+    <img
+      src="
+https://www.f1latam.com/autos/img/prin/ford_nfs_01.jpg"
+      alt=""
+    />
   </div>
-  <div
-    *ngIf="loginForm.get('email')?.errors?.['email']"
-  >
-    Debe ser un correo valido
+  <div class="col-md-6">
+    <form [formGroup]="loginForm" class="w-50 mx-auto mt-5">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="text"
+          name=""
+          id="email"
+          class="form-control"
+          placeholder="email"
+          formControlName="email"
+        />
+        <div
+          *ngIf="loginForm.get('email')?.errors?.['required']"
+          class="form-text text-danger"
+        >
+          Debe llenar el campo
+        </div>
+        <div
+          *ngIf="loginForm.get('email')?.errors?.['email']"
+          class="form-text text-danger"
+        >
+          Debe ser un correo valido
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          name=""
+          id="password"
+          class="form-control"
+          placeholder="password"
+          formControlName="password"
+        />
+        <div
+          *ngIf="loginForm.get('password')?.errors?.['required']"
+          class="form-text text-danger"
+        >
+          Contraseña requerida
+        </div>
+        <div
+          *ngIf="loginForm.get('password')?.errors?.['minlength']"
+          class="form-text text-danger"
+        >
+          Minimo 5 caracteres
+        </div>
+      </div>
+
+      <button
+        type="button"
+        (click)="login()"
+        [disabled]="!loginForm.valid"
+        class="btn btn-sm btn-outlineinfo"
+      >
+        Logearse
+      </button>
+    </form>
   </div>
-  <label for="password">Password</label>
-  <input
-    type="password"
-    name=""
-    id="password"
-    placeholder="password"
-    formControlName="password"
-  />
-  <div
-    *ngIf="loginForm.get('password')?.errors?.['required']"
-  >
-    Contraseña requerida
-  </div>
-  <div
-    *ngIf="loginForm.get('password')?.errors?.['minlength']"
-  >
-    Minimo 5 caracteres
-  </div>
-  <button type="button" (click)="login()" [disabled]="!loginForm.valid">Logearse</button>
-</form>
+</div>

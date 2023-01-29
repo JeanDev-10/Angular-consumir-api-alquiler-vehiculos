@@ -1,34 +1,42 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">nombre propietario</th>
+      <th scope="col">cedula propietario</th>
+      <th scope="col">email propietario</th>
       <th scope="col">fecha alquiler</th>
       <th scope="col">tiempo alquiler</th>
       <th scope="col">tiempo restante</th>
       <th scope="col">marca vehiculo</th>
       <th scope="col">modelo vehiculo</th>
       <th scope="col">precio a pagar</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let a of alquilados">
-      <th scope="row">{{ a.fecha_alquiler }}</th>
-      <td>{{ a.tiempo_alquiler }}</td>
-      <td> En {{ convertTime(a.tiempo_alquiler) }} </td>
+      <th scope="row">{{ a.nombre_usuario }}</th>
+      <th>{{ a.cedula_usuario }}</th>
+      <th>{{ a.email_usuario }}</th>
+      <td>{{ a.fecha_alquiler }}</td>
+     <td>{{ a.tiempo_alquiler }}</td>
+       <td> En {{ convertTime(a.tiempo_alquiler) }} </td>
       <td>{{ a.marca_vehiculo | titlecase }}</td>
       <td>{{ a.modelo_vehiculo | titlecase }}</td>
       <td>{{ a.precio_pagar | currency }}</td>
+
       <td>
-        <button
-          class="btn btn-sm btn-outline-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Ver
-        </button>
+        <a class="btn btn-sm btn-primary"
+        data-bs-toggle="modal"
+        (click)="verModal(a.id)"
+        >Ver</a>
+        <button type="button" (click)="eliminarAlquilado(a.id)" class="btn btn-sm btn-outline-danger">Eliminar</button>
       </td>
+      <!--  -->
       <div
         class="modal fade modal-dialog-scrollable"
-        id="exampleModal"
+        id={{a.id}}
+        #modal
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -49,26 +57,24 @@
             <div class="modal-body">
               <div class="card shadow">
                 <div class="card-header">
-                  <h4>Modelo:{{ a.modelo_vehiculo | titlecase }}</h4>
-                  <h4>Marca:{{ a.marca_vehiculo | titlecase }}</h4>
+                  <h4>Modelo:{{a.modelo_vehiculo|titlecase}} </h4>
+                  <h4>Marca:{{a.marca_vehiculo|titlecase}} </h4>
                 </div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-12 col-md-6">
-                      <img
-                        class="img-fluid w-100"
-                        src="{{ a.url_vehiculo }}"
-                        alt=""
-                      />
+                        <img class="img-fluid w-100" src="{{a.url_vehiculo}}" alt="">
                     </div>
                     <div class="col-12 col-md-6">
-                      <p>Fecha alquiler: {{ a.fecha_alquiler }}</p>
-                      <p>Tiempo alquiler: {{ a.tiempo_alquiler }}</p>
+                      <p>Precio: {{a.precio_pagar|currency}} </p>
+                      <p>Fecha alquiler: {{a.fecha_alquiler}} </p>
                     </div>
                   </div>
                 </div>
                 <div class="card-footer">
-                  <p>Precio: {{ a.precio_pagar | currency }}</p>
+                  <h5>Nombre: {{a.nombre_usuario|titlecase}}  </h5>
+                  <h5>Email: {{a.email_usuario}}  </h5>
+                  <h5>Cedula: {{a.cedula_usuario}}  </h5>
                 </div>
               </div>
             </div>
@@ -85,12 +91,5 @@
         </div>
       </div>
     </tr>
-
-    <!--  <tr *ngIf="alquilados.vehiculos.length<2">
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr> -->
   </tbody>
 </table>

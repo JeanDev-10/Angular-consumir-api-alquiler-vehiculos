@@ -15,7 +15,7 @@ export class RegisterComponent {
     this.registerForm= this.fb.group({
       email:['',[Validators.required,Validators.minLength(5)]],
       cedula:['',[Validators.required,Validators.pattern("^([0-9]{10,10})"),Validators.maxLength(10)]],
-      name:['',[Validators.required,Validators.minLength(5)]],
+      name:['',[Validators.required,Validators.minLength(10)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
     })
   }
