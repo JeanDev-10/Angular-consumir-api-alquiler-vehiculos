@@ -1,6 +1,17 @@
+<div class="mb-3">
+  <div class="search-name">
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+      autocomplete="on"
+      placeholder="Buscar por modelo o marca"
+    />
+  </div>
 <a *ngIf="user?.user?.rol=='admin'" routerLink="/dashboard/vehiculos/create" class="btn btn-primary">crear vehiculos</a>
 <div class="row gap-5">
-  <div class="col-auto col-md-3 mx-auto" *ngFor="let auto of autos">
+  <div class="col-auto col-md-3 mx-auto" *ngFor="let auto of autos |filter:searchText">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"> Modelo: {{auto.modelo}} </h3>

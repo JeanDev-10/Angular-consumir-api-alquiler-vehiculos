@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Subject } from 'rxjs';
 import { MisVehiculoA, VehiculoA, VehiculosAlquiladosI } from '../../interfaces/vehiculos.interface';
 import { VehiculoService } from '../../services/vehiculo.service';
 
@@ -10,12 +11,14 @@ import { VehiculoService } from '../../services/vehiculo.service';
 })
 export class TableVehiculoAdminComponent implements OnInit {
   alquilados!:VehiculoA[]
+  searchText!:any
   constructor(private readonly vehiculoService:VehiculoService){}
   ngOnInit(): void {
     this.vehiculoService.vehiculosAlquilados().subscribe((data:VehiculosAlquiladosI)=>{
       this.alquilados=data.vehiculos
     })
   }
+
   verModal(id:any):void{
     console.log(id)
   }
@@ -36,5 +39,6 @@ export class TableVehiculoAdminComponent implements OnInit {
       this.ngOnInit()
     })
   }
+
 
 }

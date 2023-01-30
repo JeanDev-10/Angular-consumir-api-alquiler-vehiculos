@@ -4,9 +4,10 @@ import { TableVehiculoComponent } from './components/table-vehiculo/table-vehicu
 import { VehiculosRouting } from './vehiculos.routing';
 import { FormVehiculoComponent } from './components/form-vehiculo/form-vehiculo.component';
 import { CardVehiculoComponent } from './components/card-vehiculo/card-vehiculo.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableVehiculoAdminComponent } from './components/table-vehiculo-admin/table-vehiculo-admin.component';
 import { AlquilarVehiculoComponent } from './components/alquilar-vehiculo/alquilar-vehiculo.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AlquilarVehiculoComponent } from './components/alquilar-vehiculo/alquil
     TableVehiculoAdminComponent,
     AlquilarVehiculoComponent,
   ],
-  imports: [CommonModule, VehiculosRouting,ReactiveFormsModule],
+    imports: [CommonModule, VehiculosRouting,ReactiveFormsModule,Ng2SearchPipeModule,FormsModule],
   exports: [],
 })
 export class VehiculosModule {}

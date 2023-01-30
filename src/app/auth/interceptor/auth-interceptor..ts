@@ -32,13 +32,13 @@ export class AuthInterceptor implements HttpInterceptor {
         if(error.status===401){
           this.authService.deleteToken();
           console.log("redireccionar interceptor")
+          alert('sin permisos')
           this.router.navigate(['/auth/login']);
         }
 				if (error.status !==200) {
           console.error('ERROR DE SERVIDOR', 'top right');
-          console.log(error.error)
+          console.log(error.error.messages)
           this.router.navigate(['/dashboard']);
-
 				}
 			}
 		} else {

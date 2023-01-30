@@ -9,6 +9,7 @@ import { UserI } from 'src/app/auth/interface/user.interface';
   styleUrls: ['./card-vehiculo.component.scss']
 })
 export class CardVehiculoComponent implements OnInit {
+  searchText!:any
   autos!:Vehiculo[];
   user!:UserI;
   constructor(private readonly vehiculoService:VehiculoService,

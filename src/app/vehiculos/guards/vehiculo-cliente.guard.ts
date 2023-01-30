@@ -19,6 +19,7 @@ export class VehiculoClienteGuard implements CanActivate {
       if (this.permission()) {
         return true;
       }
+      this.router.navigate(['/dashboard'])
       return false;
 
     }

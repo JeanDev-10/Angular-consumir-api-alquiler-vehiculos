@@ -37,4 +37,5 @@ export class VehiculoService {
   deleteAlquiler(id:string):Observable<any>{
     return this.http.delete<any>(`${this.api}/vehiculos/alquilar/${id}`)
   }
+
 }

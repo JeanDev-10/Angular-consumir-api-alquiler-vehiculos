@@ -1,3 +1,17 @@
+<!-- <app-search-cliente></app-search-cliente> -->
+<div class="mb-3">
+  <div class="search-name">
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+      autocomplete="on"
+      placeholder="Buscar por cedula"
+    />
+  </div>
+
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -14,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let a of alquilados">
+    <tr *ngFor="let a of alquilados|filter:searchText">
       <th scope="row">{{ a.nombre_usuario }}</th>
       <th>{{ a.cedula_usuario }}</th>
       <th>{{ a.email_usuario }}</th>
