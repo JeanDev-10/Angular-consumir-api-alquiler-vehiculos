@@ -1,96 +1,37 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">fecha alquiler</th>
-      <th scope="col">tiempo alquiler</th>
-      <th scope="col">tiempo restante</th>
-      <th scope="col">marca vehiculo</th>
-      <th scope="col">modelo vehiculo</th>
-      <th scope="col">precio a pagar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let a of alquilados">
-      <th scope="row">{{ a.fecha_alquiler }}</th>
-      <td>{{ a.tiempo_alquiler }}</td>
-      <td> En {{ convertTime(a.tiempo_alquiler) }} </td>
-      <td>{{ a.marca_vehiculo | titlecase }}</td>
-      <td>{{ a.modelo_vehiculo | titlecase }}</td>
-      <td>{{ a.precio_pagar | currency }}</td>
-      <td>
-        <button
-          class="btn btn-sm btn-outline-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Ver
-        </button>
-      </td>
-      <div
-        class="modal fade modal-dialog-scrollable"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Datos del alquiler
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="card shadow">
-                <div class="card-header">
-                  <h4>Modelo:{{ a.modelo_vehiculo | titlecase }}</h4>
-                  <h4>Marca:{{ a.marca_vehiculo | titlecase }}</h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-12 col-md-6">
-                      <img
-                        class="img-fluid w-100"
-                        src="{{ a.url_vehiculo }}"
-                        alt=""
-                      />
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <p>Fecha alquiler: {{ a.fecha_alquiler }}</p>
-                      <p>Tiempo alquiler: {{ a.tiempo_alquiler }}</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <p>Precio: {{ a.precio_pagar | currency }}</p>
-                </div>
+<div class="row">
+  <div class="col-12 col-md-10 mx-auto mt-5">
+    <div class="table-responsive">
+      <table class="table caption-top border table-hover">
+        <caption><i class="bi bi-car-front"></i> Mis vehiculos</caption>
+        <thead class="">
+          <tr>
+            <th scope="col"><i class="bi bi-calendar"></i> Fecha alquiler</th>
+            <th scope="col"><i class="bi bi-alarm"></i> Tiempo alquiler</th>
+            <th scope="col"><i class="bi bi-alarm"></i> Tiempo restante</th>
+            <th scope="col"><i class="bi bi-car-front-fill"></i> vehiculo</th>
+            <th scope="col"><i class="bi bi-ev-front"></i> Modelo vehiculo</th>
+            <th scope="col" class="text-center"><i class="bi bi-card-image"></i> Imagen</th>
+            <th scope="col"><i class="bi bi-piggy-bank-fill"></i> Precio a pagar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of alquilados" class="p-2">
+            <th scope="row" class="text-center">{{ a.fecha_alquiler }}</th>
+            <td class="text-center">{{ a.tiempo_alquiler }}</td>
+            <td class="text-center"> En {{ convertTime(a.tiempo_alquiler) }} </td>
+            <td class="text-center">{{ a.marca_vehiculo | titlecase }}</td>
+            <td class="text-center">{{ a.modelo_vehiculo | titlecase }}</td>
+            <td >
+              <div class="w-50 mx-auto">
+                <img [src]="a.url_vehiculo" alt="" class="img-fluid object-fit-cover">
               </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </tr>
+            </td>
+            <td><span class="text-success text-center">{{ a.precio_pagar | currency }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!--  <tr *ngIf="alquilados.vehiculos.length<2">
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr> -->
-  </tbody>
-</table>
+  </div>
+</div>
+

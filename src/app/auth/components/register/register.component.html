@@ -1,105 +1,152 @@
-
-<h1 class="text-center">Register</h1>
-<div class="row">
-  <div class="col-md-8 mx-auto">
-    <form [formGroup]="registerForm">
-      <div class="mb-3">
-        <label for="name" class="form-label">Nombre</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          placeholder="nombre"
-          formControlName="name"
+<div class="card shadow pt-5">
+  <div class="card-body">
+    <div class="row d-flex  align-items-center" >
+      <div class="col-md-8 d-none d-md-block ">
+        <img
+          src="https://i.ytimg.com/vi/IsbfxPdPXtU/maxresdefault.jpg"
+          class="img-fluid rounded w-100 "
+          alt=""
         />
-        <div
-          *ngIf="registerForm.get('name')?.errors?.['required']"
-          class="form-text text-danger"
-        >
-          Debe llenar el campo
-        </div>
-        <div
-          *ngIf="registerForm.get('name')?.errors?.['minlength']"
-          class="form-text text-danger"
-        >
-          Debe tener minimo 10 caracteres
-        </div>
-        <label for="email" class="form-label">Email</label>
-        <input
-          type="text"
-          class="form-control"
-          name=""
-          id="email"
-          placeholder="email"
-          formControlName="email"
-        />
-        <div
-          *ngIf="registerForm.get('email')?.errors?.['required']"
-          class="form-text text-danger"
-        >
-          Debe llenar el campo
-        </div>
-        <div
-          *ngIf="registerForm.get('email')?.errors?.['email']"
-          class="form-text text-danger"
-        >
-          Debe ser un correo valido
-        </div>
       </div>
-      <div class="mb-3">
-        <label for="cedula" class="form-label">cedula</label>
-
-        <input
-          type="number"
-          class="form-control"
-          class="form-control"
-          id="cedula"
-          formControlName="cedula"
-        />
-        <div
-          *ngIf="registerForm.get('cedula')?.errors?.['required']"
-          class="form-text text-danger"
-        >
-          Debe llenar el campo
-        </div>
-        <div
-          *ngIf="registerForm.get('cedula')?.errors?.['pattern']"
-          class="form-text text-danger"
-        >
-          Debe llenar los 10 numeros de la cedula ni mas ni menos
-        </div>
-
-        <div class="mb-3">
-          <label for="pass" class="form-label">Password</label>
-          <input
-            class="form-control"
-            type="password"
-            name=""
-            id="pass"
-            formControlName="password"
-          />
-          <div
-            *ngIf="registerForm.get('password')?.errors?.['required']"
-            class="form-text text-danger"
-          >
-            Debe llenar el campo
+      <div class="col-md-4 ">
+        <h5 class="text-primary text-center mb-3"><i class="bi bi-car-front"></i> Register</h5>
+        <form [formGroup]="registerForm">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              [ngClass]="[registerForm.get('name')?.errors?.['required'] ||
+              registerForm.get('name')?.errors?.['minlength']||registerForm.get('name')?.errors?.['pattern']
+                  ? 'is-invalid' : 'is-valid' ]"
+              placeholder="Nombre"
+              formControlName="name"
+            />
+            <label for="name" class="form-label"><i class="bi bi-person-vcard"></i> Nombre</label>
+            <div *ngIf="!registerForm.get('name')?.errors?.['required']&&!registerForm.get('name')?.errors?.['minlength']" class="valid-feedback">
+              Looks good!
+            </div>
+            <div
+              *ngIf="registerForm.get('name')?.errors?.['required']"
+              class="form-text text-danger"
+            >
+              Debe llenar el campo
+            </div>
+            <div
+              *ngIf="registerForm.get('name')?.errors?.['minlength']"
+              class="form-text text-danger"
+            >
+              Debe tener minimo 10 caracteres
+            </div>
+            <div
+              *ngIf="registerForm.get('name')?.errors?.['pattern']"
+              class="form-text text-danger"
+            >
+              Debe solo existir letras y espacios
+            </div>
           </div>
-          <div
-            *ngIf="registerForm.get('password')?.errors?.['minlength']"
-            class="form-text text-danger"
-          >
-            Debe tener al menos 5 caracteres
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name=""
+              id="email"
+              [ngClass]="[registerForm.get('email')?.errors?.['required'] ||
+              registerForm.get('email')?.errors?.['email']
+                  ? 'is-invalid' : 'is-valid' ]"
+              placeholder="Email"
+              formControlName="email"
+            />
+            <label for="email" class="form-label"><i class="bi bi-person-circle"></i> Email</label>
+            <div *ngIf="!registerForm.get('email')?.errors?.['required']&&!registerForm.get('email')?.errors?.['email']" class="valid-feedback">
+              Looks good!
+            </div>
+            <div
+              *ngIf="registerForm.get('email')?.errors?.['required']"
+              class="form-text text-danger"
+            >
+              Debe llenar el campo
+            </div>
+            <div
+              *ngIf="registerForm.get('email')?.errors?.['email']"
+              class="form-text text-danger"
+            >
+              Debe ser un correo valido
+            </div>
           </div>
-        </div>
-        <button
-          type="button"
-          (click)="register()"
-          [disabled]="!registerForm.valid"
-          class="btn btn-outline-primary"
-        >
-          registrarse
-        </button>
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              class="form-control"
+              class="form-control"
+              placeholder="Cedula"
+              id="cedula"
+              [ngClass]="[registerForm.get('cedula')?.errors?.['required'] ||
+              registerForm.get('cedula')?.errors?.['pattern']
+                  ? 'is-invalid' : 'is-valid' ]"
+              formControlName="cedula"
+            />
+            <label for="cedula" class="form-label"><i class="bi bi-credit-card"></i> Cedula</label>
+            <div *ngIf="!registerForm.get('cedula')?.errors?.['required']&&!registerForm.get('cedula')?.errors?.['pattern']" class="valid-feedback">
+              Looks good!
+            </div>
+            <div
+              *ngIf="registerForm.get('cedula')?.errors?.['required']"
+              class="form-text text-danger"
+            >
+              Debe llenar el campo
+            </div>
+            <div
+              *ngIf="registerForm.get('cedula')?.errors?.['pattern']"
+              class="form-text text-danger"
+            >
+              Debe llenar los 10 numeros de la cedula ni mas ni menos
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              type="password"
+              name=""
+              id="pass"
+              placeholder="Password"
+              [ngClass]="[registerForm.get('password')?.errors?.['required'] ||
+              registerForm.get('password')?.errors?.['minlength']
+                  ? 'is-invalid' : 'is-valid' ]"
+              formControlName="password"
+            />
+            <label for="pass" class="form-label"><i class="bi bi-eye"></i> Password</label>
+            <div *ngIf="!registerForm.get('password')?.errors?.['required']&&!registerForm.get('password')?.errors?.['minlength']" class="valid-feedback">
+              Looks good!
+            </div>
+            <div
+              *ngIf="registerForm.get('password')?.errors?.['required']"
+              class="form-text text-danger"
+            >
+              Debe llenar el campo
+            </div>
+            <div
+              *ngIf="registerForm.get('password')?.errors?.['minlength']"
+              class="form-text text-danger"
+            >
+              Debe tener al menos 5 caracteres
+            </div>
+          </div>
+          <button
+            type="button"
+            (click)="register()"
+            [disabled]="!registerForm.valid"
+            class="btn btn-outline-primary"
+          >
+            registrarse
+          </button>
+          <div class="mt-4">
+            <a routerLink="/auth/login"><i class="bi bi-person-x-fill"></i> Ya tienes cuenta?</a>
+          </div>
+        </form>
+        {{registerForm.valid|json}}
       </div>
-    </form>
+    </div>
+
   </div>
 </div>

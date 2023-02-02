@@ -1,109 +1,59 @@
 <!-- <app-search-cliente></app-search-cliente> -->
 <div class="mb-3">
-  <div class="search-name">
+  <div class="form-floating w-50 mx-auto my-5">
     <input
       class="form-control"
       type="text"
       name="search"
       [(ngModel)]="searchText"
       autocomplete="on"
-      placeholder="Buscar por cedula"
+      id="floatingInput"
+      placeholder="Buscar por modelo o marca"
     />
+    <label for="floatingInput"><i class="bi bi-person-fill"></i> Cedula o nombre</label>
   </div>
 
 </div>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">nombre propietario</th>
-      <th scope="col">cedula propietario</th>
-      <th scope="col">email propietario</th>
-      <th scope="col">fecha alquiler</th>
-      <th scope="col">tiempo alquiler</th>
-      <th scope="col">tiempo restante</th>
-      <th scope="col">marca vehiculo</th>
-      <th scope="col">modelo vehiculo</th>
-      <th scope="col">precio a pagar</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let a of alquilados|filter:searchText">
-      <th scope="row">{{ a.nombre_usuario }}</th>
-      <th>{{ a.cedula_usuario }}</th>
-      <th>{{ a.email_usuario }}</th>
-      <td>{{ a.fecha_alquiler }}</td>
-     <td>{{ a.tiempo_alquiler }}</td>
-       <td> En {{ convertTime(a.tiempo_alquiler) }} </td>
-      <td>{{ a.marca_vehiculo | titlecase }}</td>
-      <td>{{ a.modelo_vehiculo | titlecase }}</td>
-      <td>{{ a.precio_pagar | currency }}</td>
-
-      <td>
-        <a class="btn btn-sm btn-primary"
-        data-bs-toggle="modal"
-        (click)="verModal(a.id)"
-        >Ver</a>
-        <button type="button" (click)="eliminarAlquilado(a.id)" class="btn btn-sm btn-outline-danger">Eliminar</button>
-      </td>
-      <!--  -->
-      <div
-        class="modal fade modal-dialog-scrollable"
-        id={{a.id}}
-        #modal
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Datos del alquiler
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="card shadow">
-                <div class="card-header">
-                  <h4>Modelo:{{a.modelo_vehiculo|titlecase}} </h4>
-                  <h4>Marca:{{a.marca_vehiculo|titlecase}} </h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-12 col-md-6">
-                        <img class="img-fluid w-100" src="{{a.url_vehiculo}}" alt="">
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <p>Precio: {{a.precio_pagar|currency}} </p>
-                      <p>Fecha alquiler: {{a.fecha_alquiler}} </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <h5>Nombre: {{a.nombre_usuario|titlecase}}  </h5>
-                  <h5>Email: {{a.email_usuario}}  </h5>
-                  <h5>Cedula: {{a.cedula_usuario}}  </h5>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
+<div class="table-responsive">
+  <table class="table caption-top border table-hover ">
+    <caption><i class="bi bi-car-front"></i> Vehiculos alquilados</caption>
+    <thead>
+      <tr>
+        <th scope="col" ><i class="bi bi-person"></i> Nombre propietario</th>
+        <th scope="col" ><i class="bi bi-wallet"></i> Cedula propietario</th>
+        <th scope="col" ><i class="bi bi-envelope"></i> Email propietario</th>
+        <th scope="col" ><i class="bi bi-calendar"></i>Fecha alquiler</th>
+        <th scope="col" ><i class="bi bi-calendar-event"></i> Tiempo alquiler</th>
+        <th scope="col" ><i class="bi bi-calendar-event"></i> Tiempo restante</th>
+        <th scope="col" ><i class="bi bi-car-front-fill"></i> Marca vehiculo</th>
+        <th scope="col" ><i class="bi bi-ev-front-fill"></i> Modelo vehiculo</th>
+        <th scope="col" ><i class="bi bi-piggy-bank-fill"></i> Precio a pagar</th>
+        <th scope="col" class="text-center"><i class="bi bi-card-image"></i> Imagen</th>
+        <th scope="col"><i class="bi bi-activity"></i> Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of alquilados|filter:searchText">
+        <th scope="row">{{ a.nombre_usuario }}</th>
+        <th>{{ a.cedula_usuario }}</th>
+        <th>{{ a.email_usuario }}</th>
+        <td>{{ a.fecha_alquiler }}</td>
+       <td>{{ a.tiempo_alquiler }}</td>
+         <td> En {{ convertTime(a.tiempo_alquiler,a.id) }} </td>
+        <td>{{ a.marca_vehiculo | titlecase }}</td>
+        <td>{{ a.modelo_vehiculo | titlecase }}</td>
+        <td>{{ a.precio_pagar | currency }}</td>
+        <td >
+          <div class="w-50 mx-auto">
+            <img [src]="a.url_vehiculo" alt="" class="img-fluid object-fit-cover">
           </div>
-        </div>
-      </div>
-    </tr>
-  </tbody>
-</table>
+        </td>
+        <td>
+          <button type="button" (click)="eliminarAlquilado(a.id)" class="btn btn-sm btn-outline-danger">Eliminar</button>
+        </td>
+        <!--  -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+

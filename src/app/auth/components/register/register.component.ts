@@ -13,9 +13,9 @@ export class RegisterComponent {
   registerForm!:FormGroup
   ngOnInit():void{
     this.registerForm= this.fb.group({
-      email:['',[Validators.required,Validators.minLength(5)]],
+      email:['',[Validators.required,Validators.email]],
       cedula:['',[Validators.required,Validators.pattern("^([0-9]{10,10})"),Validators.maxLength(10)]],
-      name:['',[Validators.required,Validators.minLength(10)]],
+      name:['',[Validators.required,Validators.minLength(10),Validators.pattern('^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$')]],
       password: ['', [Validators.required, Validators.minLength(5)]],
     })
   }

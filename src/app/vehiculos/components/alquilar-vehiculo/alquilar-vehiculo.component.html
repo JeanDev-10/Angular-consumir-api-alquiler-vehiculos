@@ -1,11 +1,19 @@
 <div class="row">
-  <div class="col-10 col-md-8 mx-auto">
+  <div class="col-10 col-md-8 mx-auto mt-5">
     <h2 class="text-primary text-center">Alquiler Vehiculos</h2>
-    <h5 class="text-info text-center">$10 por hora (incluyendo menos de la hora)</h5>
+    <h5 class="text-info text-center">
+      $10 por hora (incluyendo menos de la hora)
+    </h5>
     <div class="card shadow">
       <div class="card-header">
-        <h5>Modelo:{{ vehiculoAlquilar?.modelo }}</h5>
-        <h5>Marca:{{ vehiculoAlquilar?.marca }}</h5>
+        <h5 class="card-title">
+          <i class="bi bi-ev-front"></i>Modelo:
+          <span class="text-primary">{{ vehiculoAlquilar?.modelo }}</span>
+        </h5>
+        <h5 class="card-title">
+          <i class="bi bi-ev-front-fill"></i>Marca:
+          <span class="text-info">{{ vehiculoAlquilar?.marca }}</span>
+        </h5>
       </div>
       <div class="card-body">
         <div class="row">
@@ -18,53 +26,94 @@
           </div>
           <div class="col-12 col-md-5 mx-auto">
             <form [formGroup]="vehiculoAlquilerForm">
-              <div class="mb-3">
-                <label for="modelo" class="form-label">Fecha Alquiler</label>
-                <input type="datetime-local" name="" id="" class="form-control" formControlName="fecha_alquiler" min="{{fecha}}" />
+              <div class="form-floating mb-3">
+                <input
+                  type="datetime-local"
+                  name=""
+                  id="date"
+                  class="form-control"
+                  formControlName="fecha_alquiler"
+                  min="{{ fecha }}"
+                  [ngClass]="[vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['required'] ||
+                  vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['min']
+                  ? 'is-invalid' : 'is-valid' ]"
+                />
+                <label for="date" class="form-label"
+                  ><i class="bi bi-0-square"></i> Fecha Alquiler</label
+                >
+                <div *ngIf="!vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['required']&&!vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['min']" class="valid-feedback">
+                  Looks good!
+                </div>
                 <div
                   *ngIf="vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['required']"
-                  class="form-text text-danger"
+                  class="form-text text-danger invalid-feedback"
                 >
                   Debe llenar el campo
                 </div>
                 <div
                   *ngIf="vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['min']"
-                  class="form-text text-danger"
+                  class="form-text text-danger invalid-feedback"
                 >
                   debe ubicar fecha correcta
                 </div>
               </div>
-              <div class="mb-3" *ngIf="vehiculoAlquilerForm.get('fecha_alquiler')?.valid">
-                <label for="modelo" class="form-label">Tiempo Alquiler</label>
-                <input type="datetime-local"
-                min='{{vehiculoAlquilerForm.get("fecha_alquiler")?.value}}'
-                class="form-control" formControlName="tiempo_alquiler" (change)="onInputHours()"
-
-                />
+              <div class=" mb-3">
                 <div
-                  *ngIf="vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['required']"
-                  class="form-text text-danger"
+                  class=" form-floating mb-3"
+                  *ngIf="vehiculoAlquilerForm.get('fecha_alquiler')?.valid"
                 >
-                  Debe llenar el campo
+                  <input
+                    type="datetime-local"
+                    id="tiempo_alquiler"
+                    min="{{
+                      vehiculoAlquilerForm.get('fecha_alquiler')?.value
+                    }}"
+                    class="form-control"
+                    formControlName="tiempo_alquiler"
+                    (change)="onInputHours()"
+                    [ngClass]="[vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['required'] ||
+                  vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['min']
+                  ? 'is-invalid' : 'is-valid' ]"
+                  />
+                  <label for="entrega" class="form-label" id="tiempo_alquiler"
+                  ><i class="bi bi-1-square"></i> Tiempo Alquiler</label
+                >
+                <div *ngIf="!vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['required']&&!vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['min']" class="valid-feedback">
+                  Looks good!
                 </div>
-                <div
-                  *ngIf="vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['min']"
-                  class="form-text text-danger"
-                >
-                  debe ubicar fecha correcta
+                  <div
+                    *ngIf="vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['required']"
+                    class="form-text text-danger invalid-feedback"
+                  >
+                    Debe llenar el campo
+                  </div>
+                  <div
+                    *ngIf="vehiculoAlquilerForm.get('tiempo_alquiler')?.errors?.['min']"
+                    class="form-text text-danger invalid-feedback"
+                  >
+                    debe ubicar fecha correcta
+                  </div>
                 </div>
               </div>
             </form>
-            <h5>Valor a pagar: {{ valor |currency }}</h5>
+
+            <h5>Valor a pagar: <span class="text-success">{{ valor | currency }}</span></h5>
             <div>
-              {{vehiculoAlquilerForm.value|json}}
-              {{vehiculoAlquilerForm.valid|json}}
+              {{ vehiculoAlquilerForm.value | json }}
+              {{ vehiculoAlquilerForm.valid | json }}
             </div>
           </div>
         </div>
       </div>
       <div class="card-footer">
-        <button type="button" (click)="alquilerVehiculo(vehiculoAlquilar?.id)" class="btn btn-outline-info" [disabled]="!vehiculoAlquilerForm.valid" >Confirmar Alquiler</button>
+        <button
+          type="button"
+          (click)="alquilerVehiculo(vehiculoAlquilar?.id)"
+          class="btn btn-outline-info"
+          [disabled]="!vehiculoAlquilerForm.valid"
+        >
+          Confirmar Alquiler
+        </button>
       </div>
     </div>
   </div>

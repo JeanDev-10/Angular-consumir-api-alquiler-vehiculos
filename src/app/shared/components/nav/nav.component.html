@@ -1,62 +1,116 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink=" " routerLinkActive="active"
-      >Dashboard</a
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid w-50">
+    <div class="d-flex justify-content-between align-items-center">
+      <a class="navbar-brand" routerLink="vehiculos" routerLinkActive="active"
+      ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-ev-station" viewBox="0 0 16 16">
+        <path d="M3.5 2a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5h-5Zm2.131 10.46H4.14v-.893h1.403v-.505H4.14v-.855h1.49v-.54H3.485V13h2.146v-.54Zm1.316.54h.794l1.106-3.333h-.733l-.74 2.615h-.031l-.747-2.615h-.764L6.947 13Z"/>
+        <path d="M3 0a2 2 0 0 0-2 2v13H.5a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1H11v-4a1 1 0 0 1 1 1v.5a1.5 1.5 0 0 0 3 0V4a.5.5 0 0 0-.146-.354l-.5-.5a.5.5 0 0 0-.707 0l-.5.5A.5.5 0 0 0 13 4v3c0 .71.38 1.096.636 1.357l.007.008c.253.258.357.377.357.635v3.5a.5.5 0 1 1-1 0V12a2 2 0 0 0-2-2V2a2 2 0 0 0-2-2H3Zm7 2v13H2V2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Z"/>
+      </svg>Vehiculos</a
     >
     <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+  <i class="bi bi-truck-front-fill"></i>
+  </button>
+    </div>
+    <div
+      class="collapse navbar-collapse "
+      id="navbarNav"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul
-        class="navbar-nav d-flex align-items-center "
-      >
-        <li class="nav-item">
-          <a routerLink="vehiculos" class="nav-link" routerLinkActive="active"
-            >Vehiculos</a
-          >
-        </li>
-        <li class="nav-item" *ngIf="user?.user?.rol == 'admin'">
+      <ul class="navbar-nav d-flex align-items-center justify-content-evenly">
+        <li class="nav-item dropdown">
           <a
-            routerLink="vehiculos-alquilados"
-            class="nav-link"
-            routerLinkActive="active"
-            >Vehiculos alquilados</a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-        </li>
-        <li class="nav-item" *ngIf="user?.user?.rol == 'cliente'">
-          <a
-            class="nav-link"
-            routerLink="mis-vehiculos"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >mis Vehiculos</a
-          >
-        </li>
-        <li class="nav-item">
-          <a *ngIf="user?.user" class="nav-link">
-            Bienvenido {{ user.user.nombre_usuario | titlecase }}-
-            {{ user.user.rol | titlecase }}
+          <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-truck-front" viewBox="0 0 16 16">
+            <path d="M5 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-6-1a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H7ZM4 2a1 1 0 0 0-1 1v3.9c0 .625.562 1.092 1.17.994C5.075 7.747 6.792 7.5 8 7.5c1.208 0 2.925.247 3.83.394A1.008 1.008 0 0 0 13 6.9V3a1 1 0 0 0-1-1H4Zm0 1h8v3.9c0 .002 0 .001 0 0l-.002.004a.013.013 0 0 1-.005.002h-.004C11.088 6.761 9.299 6.5 8 6.5s-3.088.26-3.99.406h-.003a.013.013 0 0 1-.005-.002L4 6.9c0 .001 0 .002 0 0V3Z"/>
+            <path d="M1 2.5A2.5 2.5 0 0 1 3.5 0h9A2.5 2.5 0 0 1 15 2.5v9c0 .818-.393 1.544-1 2v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5V14H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2a2.496 2.496 0 0 1-1-2v-9ZM3.5 1A1.5 1.5 0 0 0 2 2.5v9A1.5 1.5 0 0 0 3.5 13h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 12.5 1h-9Z"/>
+          </svg>Vehiculos
           </a>
-
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a
+                routerLink="vehiculos"
+                class="dropdown-item"
+                routerLinkActive="active"
+                ><i class="bi bi-eye"></i> Ver Vehiculos</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="user?.user?.rol == 'cliente'">
+              <a
+                class="dropdown-item"
+                routerLink="mis-vehiculos"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                ><i class="bi bi-eye"></i> mis Vehiculos</a
+              >
+            </li>
+            <li>
+              <a
+                *ngIf="user?.user?.rol == 'admin'"
+                routerLink="/dashboard/vehiculos/create"
+                class="dropdown-item"
+                ><i class="bi bi-car-front-fill"></i><i class="bi bi-plus"></i>crear vehiculos</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="user?.user?.rol == 'admin'">
+              <a
+                routerLink="vehiculos-alquilados"
+                class="dropdown-item"
+                routerLinkActive="active"
+                ><i class="bi bi-eye"></i> Vehiculos alquilados</a
+              >
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <button (click)="logout()" class="btn btn-outline-danger">Logout</button>
-        </li>
+        <div>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <a *ngIf="user?.user" class="dropdown-item">
+                  <i class="bi bi-person-fill"></i>Bienvenido {{ user.user.nombre_usuario | titlecase }}-<i class="bi bi-check-circle" style="color: green;"></i>{{ user.user.rol | titlecase }}
+                </a>
+              </li>
+              <li class="dropdown-item">
+                  <a href="#" class="dropdown-item" routerLink="view-profile"
+                    ><i class="bi bi-person-gear"></i> Profile</a
+                  >
+              </li>
+              <li class="dropdown-item">
+                  <button
+                    routerLink="vehiculos-alquilados"
+                    class="dropdown-item text-danger shadow"
+                    (click)="logout()"
+                    ><i class="bi bi-x-circle"></i> Logout</button
+                  >
+              </li>
+            </ul>
+          </li>
+        </div>
       </ul>
     </div>
+
   </div>
 </nav>
-
-
-
-
-
-

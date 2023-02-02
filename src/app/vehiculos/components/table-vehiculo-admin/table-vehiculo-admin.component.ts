@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { Subject } from 'rxjs';
-import { MisVehiculoA, VehiculoA, VehiculosAlquiladosI } from '../../interfaces/vehiculos.interface';
+import {  VehiculoA, VehiculosAlquiladosI } from '../../interfaces/vehiculos.interface';
 import { VehiculoService } from '../../services/vehiculo.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class TableVehiculoAdminComponent implements OnInit {
   verModal(id:any):void{
     console.log(id)
   }
-  convertTime(fecha:any):string{
+  convertTime(fecha:any,id:string):string{
    /*  const moments=moment().endOf("hour").from(fecha) */
    let fecha1=moment()
    let fecha2=moment(fecha)
@@ -34,10 +33,12 @@ export class TableVehiculoAdminComponent implements OnInit {
   }
   eliminarAlquilado(id:string){
     console.log(id)
-    this.vehiculoService.deleteAlquiler(id).subscribe(data=>{
-      alert('eliminado alquiler')
-      this.ngOnInit()
-    })
+    if(confirm('Seguro que lo quieres eliminar?')){
+      this.vehiculoService.deleteAlquiler(id).subscribe(data=>{
+        alert('eliminado alquiler')
+        this.ngOnInit()
+      })
+    }
   }
 
 

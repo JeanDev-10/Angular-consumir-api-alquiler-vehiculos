@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ViewProfileComponent } from '../shared/components/view-profile/view-profile.component';
 import { AlquilarVehiculoComponent } from './components/alquilar-vehiculo/alquilar-vehiculo.component';
 import { CardVehiculoComponent } from './components/card-vehiculo/card-vehiculo.component';
 import { FormVehiculoComponent } from './components/form-vehiculo/form-vehiculo.component';
@@ -11,7 +12,7 @@ import { VehiculoGuardGuard } from './guards/vehiculo-guard.guard';
 const routes: Routes = [
   {
     path: '',pathMatch:'full',
-    redirectTo:'/dashboard'
+    redirectTo:'vehiculos'
   },
   {
     path: 'vehiculos',pathMatch:'full',
@@ -20,27 +21,32 @@ const routes: Routes = [
   {
     path: 'vehiculos/create',
     component:FormVehiculoComponent,
-    canActivate:[VehiculoGuardGuard]
+    /* canActivate:[VehiculoGuardGuard] */
   },
   {
     path: 'vehiculos/alquilar/:id',
     component:AlquilarVehiculoComponent,
-    canActivate:[VehiculoClienteGuard]
+    /* canActivate:[VehiculoClienteGuard] */
   },
   {
     path: 'vehiculos/edit/:vehiculo',
     component:FormVehiculoComponent,
-    canActivate:[VehiculoGuardGuard]
+    /*  */canActivate:[VehiculoGuardGuard]
   },
   {
     path:'mis-vehiculos',
     component:TableVehiculoComponent,
-    canActivate:[VehiculoClienteGuard],
+    /* canActivate:[VehiculoClienteGuard], */
   },
   {
     path:'vehiculos-alquilados',
     component:TableVehiculoAdminComponent,
-    canActivate:[VehiculoGuardGuard],
+    /* canActivate:[VehiculoGuardGuard], */
+  },
+  {
+    path:'view-profile',
+    component:ViewProfileComponent,
+    /* canActivate:[VehiculoGuardGuard], */
   },
   {
     path:'**',

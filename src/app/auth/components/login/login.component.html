@@ -1,72 +1,104 @@
-<div class="row mt-5">
-  <div class="col-md-6">
-    <img
-      src="
-https://www.f1latam.com/autos/img/prin/ford_nfs_01.jpg"
-      alt=""
-    />
-  </div>
-  <div class="col-md-6">
-    <form [formGroup]="loginForm" class="w-50 mx-auto mt-5">
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-          type="text"
-          name=""
-          id="email"
-          class="form-control"
-          placeholder="email"
-          formControlName="email"
-        />
-        <div
-          *ngIf="loginForm.get('email')?.errors?.['required']"
-          class="form-text text-danger"
-        >
-          Debe llenar el campo
-        </div>
-        <div
-          *ngIf="loginForm.get('email')?.errors?.['email']"
-          class="form-text text-danger"
-        >
-          Debe ser un correo valido
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          type="password"
-          name=""
-          id="password"
-          class="form-control"
-          placeholder="password"
-          formControlName="password"
-        />
-        <div
-          *ngIf="loginForm.get('password')?.errors?.['required']"
-          class="form-text text-danger"
-        >
-          Contraseña requerida
-        </div>
-        <div
-          *ngIf="loginForm.get('password')?.errors?.['minlength']"
-          class="form-text text-danger"
-        >
-          Minimo 5 caracteres
-        </div>
-      </div>
 
-      <button
-        type="button"
-        (click)="login()"
-        [disabled]="!loginForm.valid"
-        class="btn btn-sm btn-outlineinfo"
-      >
-        Logearse
-      </button>
-      <div>
-      <a routerLink="/auth/register">No tienes cuenta?</a>
+  <div class="card shadow   pt-5">
+    <div class="card-body">
+      <div class="row mt-5 d-flex justify-content-between align-items-center">
+        <div class="col-md-8 d-none d-md-block">
+          <img
+            src="
+            https://p4.wallpaperbetter.com/wallpaper/551/273/298/bmw-m3-gtr-need-for-speed-most-wanted-need-for-speed-most-wanted-2012-video-game-car-street-racing-hd-wallpaper-preview.jpg"
+            class="img-fluid rounded w-100"
+            alt=""
+          />
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-primary text-center">
+            <i class="bi bi-car-front"></i> Login
+          </h5>
+          <form [formGroup]="loginForm" class="w-75 mx-auto mt-5">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                [ngClass]="[loginForm.get('email')?.errors?.['required'] ||
+                loginForm.get('email')?.errors?.['email']
+                ? 'is-invalid' : 'is-valid' ]"
+                id="email"
+                class="form-control"
+                placeholder="Email"
+                formControlName="email"
+              />
 
+              <label for="email" class="form-label"
+                ><i class="bi bi-person-circle"></i> Email</label
+              >
+              <div
+                *ngIf="!loginForm.get('email')?.errors?.['required']&&!loginForm.get('email')?.errors?.['email']"
+                class="valid-feedback"
+              >
+                Looks good!
+              </div>
+              <div
+                *ngIf="loginForm.get('email')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Debe llenar el campo
+              </div>
+              <div
+                *ngIf="loginForm.get('email')?.errors?.['email']"
+                class="form-text text-danger"
+              >
+                Debe ser un correo valido
+              </div>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                id="password"
+                [ngClass]="[loginForm.get('password')?.errors?.['required'] ||
+                loginForm.get('password')?.errors?.['minlength']
+                ? 'is-invalid' : 'is-valid' ]"
+                class="form-control"
+                placeholder="Password"
+                formControlName="password"
+              />
+
+              <label for="password" class="form-label"
+                ><i class="bi bi-eye"></i> Password</label
+              >
+              <div
+                *ngIf="!loginForm.get('password')?.errors?.['required']&&!loginForm.get('password')?.errors?.['minlength']"
+                class="valid-feedback"
+              >
+                Looks good!
+              </div>
+              <div
+                *ngIf="loginForm.get('password')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Contraseña requerida
+              </div>
+              <div
+                *ngIf="loginForm.get('password')?.errors?.['minlength']"
+                class="form-text text-danger"
+              >
+                Minimo 5 caracteres
+              </div>
+            </div>
+
+            <button
+              type="button"
+              (click)="login()"
+              [disabled]="!loginForm.valid"
+              class="btn btn-sm btn-outline-info"
+            >
+              Logearse
+            </button>
+            <div class="mt-4">
+              <a routerLink="/auth/register"
+                ><i class="bi bi-person-x-fill"></i> No tienes cuenta?</a
+              >
+            </div>
+          </form>
+        </div>
       </div>
-    </form>
+    </div>
   </div>
-</div>

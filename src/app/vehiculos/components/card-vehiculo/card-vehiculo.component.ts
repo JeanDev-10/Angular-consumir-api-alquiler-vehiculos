@@ -23,11 +23,14 @@ export class CardVehiculoComponent implements OnInit {
 
   }
   onDelete(id:number):void{
-    this.vehiculoService.deleteVehiculo(id).subscribe(data=>{
-      console.log(data)
-    })
-    alert('delete sucessfully')
-    this.ngOnInit()
+    if(confirm('seguro que lo quieres eliminar?')){
+      this.vehiculoService.deleteVehiculo(id).subscribe(data=>{
+        console.log(data)
+      })
+      alert('delete sucessfully')
+      this.ngOnInit()
+    }
+
   }
   onUpdate():void{
 

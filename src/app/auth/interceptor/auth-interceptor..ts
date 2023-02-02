@@ -38,13 +38,12 @@ export class AuthInterceptor implements HttpInterceptor {
 				if (error.status !==200) {
           console.error('ERROR DE SERVIDOR', 'top right');
           console.log(error.error.messages)
-          this.router.navigate(['/dashboard']);
+          alert(error.error.messages)
 				}
 			}
 		} else {
 			console.error('OTRO TIPO DE ERROR', 'top right');
       this.router.navigate(['/dashboard']);
-
 		}
 		return throwError(error);
 	}

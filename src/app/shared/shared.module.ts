@@ -6,9 +6,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
 import { SpinnerService } from './services/spinner.service';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 @NgModule({
-  declarations: [NavComponent, SpinnerComponent],
+  declarations: [NavComponent, SpinnerComponent, ViewProfileComponent],
   imports: [CommonModule,
   RouterModule],
   exports: [NavComponent,SpinnerComponent],
