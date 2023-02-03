@@ -19,22 +19,22 @@
     <caption><i class="bi bi-car-front"></i> Vehiculos alquilados</caption>
     <thead>
       <tr>
-        <th scope="col" ><i class="bi bi-person"></i> Nombre propietario</th>
-        <th scope="col" ><i class="bi bi-wallet"></i> Cedula propietario</th>
-        <th scope="col" ><i class="bi bi-envelope"></i> Email propietario</th>
-        <th scope="col" ><i class="bi bi-calendar"></i>Fecha alquiler</th>
-        <th scope="col" ><i class="bi bi-calendar-event"></i> Tiempo alquiler</th>
-        <th scope="col" ><i class="bi bi-calendar-event"></i> Tiempo restante</th>
-        <th scope="col" ><i class="bi bi-car-front-fill"></i> Marca vehiculo</th>
-        <th scope="col" ><i class="bi bi-ev-front-fill"></i> Modelo vehiculo</th>
-        <th scope="col" ><i class="bi bi-piggy-bank-fill"></i> Precio a pagar</th>
+        <th scope="col"  class="text-center"><i class="bi bi-person"></i> Nombre propietario</th>
+        <th scope="col"  class="text-center"><i class="bi bi-wallet"></i> Cedula propietario</th>
+        <th scope="col"  class="text-center"><i class="bi bi-envelope"></i> Email propietario</th>
+        <th scope="col"  class="text-center"><i class="bi bi-calendar"></i>Fecha alquiler</th>
+        <th scope="col"  class="text-center"><i class="bi bi-calendar-event"></i> Tiempo alquiler</th>
+        <th scope="col"  class="text-center"><i class="bi bi-calendar-event"></i> Tiempo restante</th>
+        <th scope="col"  class="text-center"><i class="bi bi-car-front-fill"></i> Marca Auto</th>
+        <th scope="col"  class="text-center"><i class="bi bi-ev-front-fill"></i> Modelo Auto</th>
+        <th scope="col"  class="text-center"><i class="bi bi-piggy-bank-fill"></i> Precio a pagar</th>
         <th scope="col" class="text-center"><i class="bi bi-card-image"></i> Imagen</th>
-        <th scope="col"><i class="bi bi-activity"></i> Acciones</th>
+        <th scope="col" class="text-center"><i class="bi bi-activity"></i> Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let a of alquilados|filter:searchText">
-        <th scope="row">{{ a.nombre_usuario }}</th>
+      <tr *ngFor="let a of alquilados|filter:searchText" >
+        <th scope="row">{{ a.nombre_usuario |titlecase }}</th>
         <th>{{ a.cedula_usuario }}</th>
         <th>{{ a.email_usuario }}</th>
         <td>{{ a.fecha_alquiler }}</td>
@@ -44,8 +44,8 @@
         <td>{{ a.modelo_vehiculo | titlecase }}</td>
         <td>{{ a.precio_pagar | currency }}</td>
         <td >
-          <div class="w-50 mx-auto">
-            <img [src]="a.url_vehiculo" alt="" class="img-fluid object-fit-cover">
+          <div class="w-100 mx-auto">
+            <img [src]="a.url_vehiculo" alt="" class="img-fluid w-100" style="object-fit: cover;height:5em;">
           </div>
         </td>
         <td>

@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableVehiculoAdminComponent } from './components/table-vehiculo-admin/table-vehiculo-admin.component';
 import { AlquilarVehiculoComponent } from './components/alquilar-vehiculo/alquilar-vehiculo.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CardAlquiladosComponent } from './components/card-alquilados/card-alquilados.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CardVehiculoComponent,
     TableVehiculoAdminComponent,
     AlquilarVehiculoComponent,
+    CardAlquiladosComponent,
   ],
     imports: [CommonModule, VehiculosRouting,ReactiveFormsModule,Ng2SearchPipeModule,FormsModule],
   exports: [],

@@ -21,8 +21,8 @@ import { HomePageComponent } from './pages/home/home-page/home-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     AuthModule,VehiculosModule,
-    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,12 +7,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
 import { SpinnerService } from './services/spinner.service';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { NavHomeComponent } from './components/nav-home/nav-home.component';
 
 @NgModule({
-  declarations: [NavComponent, SpinnerComponent, ViewProfileComponent],
+  declarations: [NavComponent, SpinnerComponent, ViewProfileComponent, NavHomeComponent],
   imports: [CommonModule,
   RouterModule],
-  exports: [NavComponent,SpinnerComponent],
+  exports: [NavComponent,SpinnerComponent,NavHomeComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

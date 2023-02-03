@@ -1,4 +1,6 @@
-<div class="card shadow pt-5">
+<app-nav-home></app-nav-home>
+
+<div class="card shadow " style="margin-top: 3em;">
   <div class="card-body">
     <div class="row d-flex  align-items-center" >
       <div class="col-md-8 d-none d-md-block ">
@@ -47,7 +49,7 @@
           </div>
           <div class="form-floating mb-3">
             <input
-              type="text"
+              type="email"
               class="form-control"
               name=""
               id="email"
@@ -144,7 +146,6 @@
             <a routerLink="/auth/login"><i class="bi bi-person-x-fill"></i> Ya tienes cuenta?</a>
           </div>
         </form>
-        {{registerForm.valid|json}}
       </div>
     </div>
 

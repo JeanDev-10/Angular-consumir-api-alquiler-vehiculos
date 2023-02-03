@@ -1,5 +1,6 @@
+<app-nav-home></app-nav-home>
 
-  <div class="card shadow   pt-5">
+  <div class="card shadow " style="margin-top: 3em;">
     <div class="card-body">
       <div class="row mt-5 d-flex justify-content-between align-items-center">
         <div class="col-md-8 d-none d-md-block">
@@ -17,12 +18,12 @@
           <form [formGroup]="loginForm" class="w-75 mx-auto mt-5">
             <div class="form-floating mb-3">
               <input
-                type="text"
+                type="email"
+                class="form-control"
+                id="email"
                 [ngClass]="[loginForm.get('email')?.errors?.['required'] ||
                 loginForm.get('email')?.errors?.['email']
                 ? 'is-invalid' : 'is-valid' ]"
-                id="email"
-                class="form-control"
                 placeholder="Email"
                 formControlName="email"
               />

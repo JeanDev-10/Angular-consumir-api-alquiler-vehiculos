@@ -5,13 +5,13 @@
         <caption><i class="bi bi-car-front"></i> Mis vehiculos</caption>
         <thead class="">
           <tr>
-            <th scope="col"><i class="bi bi-calendar"></i> Fecha alquiler</th>
-            <th scope="col"><i class="bi bi-alarm"></i> Tiempo alquiler</th>
-            <th scope="col"><i class="bi bi-alarm"></i> Tiempo restante</th>
-            <th scope="col"><i class="bi bi-car-front-fill"></i> vehiculo</th>
-            <th scope="col"><i class="bi bi-ev-front"></i> Modelo vehiculo</th>
+            <th scope="col" class="text-center"><i class="bi bi-calendar"></i> Fecha alquiler</th>
+            <th scope="col" class="text-center"><i class="bi bi-alarm"></i> Tiempo alquiler</th>
+            <th scope="col" class="text-center"><i class="bi bi-alarm"></i> Tiempo restante</th>
+            <th scope="col" class="text-center"><i class="bi bi-car-front-fill"></i> vehiculo</th>
+            <th scope="col" class="text-center"><i class="bi bi-ev-front"></i> Modelo vehiculo</th>
             <th scope="col" class="text-center"><i class="bi bi-card-image"></i> Imagen</th>
-            <th scope="col"><i class="bi bi-piggy-bank-fill"></i> Precio a pagar</th>
+            <th scope="col" class="text-center"><i class="bi bi-piggy-bank-fill"></i> Precio a pagar</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
             <td class="text-center">{{ a.modelo_vehiculo | titlecase }}</td>
             <td >
               <div class="w-50 mx-auto">
-                <img [src]="a.url_vehiculo" alt="" class="img-fluid object-fit-cover">
+                <img [src]="a.url_vehiculo" alt="" class="img-fluid w-100" style="object-fit: cover;height:5em;">
               </div>
             </td>
             <td><span class="text-success text-center">{{ a.precio_pagar | currency }}</span></td>

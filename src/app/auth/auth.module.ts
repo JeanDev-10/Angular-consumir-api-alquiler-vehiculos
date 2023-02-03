@@ -6,10 +6,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthRouting } from './auth.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor} from './interceptor/auth-interceptor.';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
-  imports: [CommonModule, AuthRouting, HttpClientModule,ReactiveFormsModule],
+  imports: [CommonModule, AuthRouting, HttpClientModule,ReactiveFormsModule,SharedModule],
   exports: [AuthRouting],
   providers: [
     {

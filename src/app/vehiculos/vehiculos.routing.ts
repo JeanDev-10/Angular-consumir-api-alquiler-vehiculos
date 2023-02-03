@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewProfileComponent } from '../shared/components/view-profile/view-profile.component';
 import { AlquilarVehiculoComponent } from './components/alquilar-vehiculo/alquilar-vehiculo.component';
+import { CardAlquiladosComponent } from './components/card-alquilados/card-alquilados.component';
 import { CardVehiculoComponent } from './components/card-vehiculo/card-vehiculo.component';
 import { FormVehiculoComponent } from './components/form-vehiculo/form-vehiculo.component';
 import { TableVehiculoAdminComponent } from './components/table-vehiculo-admin/table-vehiculo-admin.component';
@@ -31,22 +32,26 @@ const routes: Routes = [
   {
     path: 'vehiculos/edit/:vehiculo',
     component:FormVehiculoComponent,
-    /*  */canActivate:[VehiculoGuardGuard]
+    /* canActivate:[VehiculoGuardGuard] */
   },
   {
     path:'mis-vehiculos',
     component:TableVehiculoComponent,
-    /* canActivate:[VehiculoClienteGuard], */
+   /*  canActivate:[VehiculoClienteGuard], */
   },
   {
     path:'vehiculos-alquilados',
+    component:CardAlquiladosComponent,
+    /* canActivate:[VehiculoGuardGuard], */
+  },
+  {
+    path:'datos-alquilados',
     component:TableVehiculoAdminComponent,
     /* canActivate:[VehiculoGuardGuard], */
   },
   {
     path:'view-profile',
     component:ViewProfileComponent,
-    /* canActivate:[VehiculoGuardGuard], */
   },
   {
     path:'**',
