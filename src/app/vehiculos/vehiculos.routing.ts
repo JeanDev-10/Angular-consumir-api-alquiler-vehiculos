@@ -20,39 +20,40 @@ const routes: Routes = [
     component:CardVehiculoComponent
   },
   {
+    path:'view-profile',
+    component:ViewProfileComponent,
+  },
+  {
     path: 'vehiculos/create',
     component:FormVehiculoComponent,
-    /* canActivate:[VehiculoGuardGuard] */
+    canActivate:[VehiculoGuardGuard]
   },
   {
     path: 'vehiculos/alquilar/:id',
     component:AlquilarVehiculoComponent,
-    /* canActivate:[VehiculoClienteGuard] */
+    canActivate:[VehiculoClienteGuard]
   },
   {
     path: 'vehiculos/edit/:vehiculo',
     component:FormVehiculoComponent,
-    /* canActivate:[VehiculoGuardGuard] */
+    canActivate:[VehiculoGuardGuard]
   },
   {
     path:'mis-vehiculos',
     component:TableVehiculoComponent,
-   /*  canActivate:[VehiculoClienteGuard], */
+    canActivate:[VehiculoClienteGuard],
   },
   {
     path:'vehiculos-alquilados',
     component:CardAlquiladosComponent,
-    /* canActivate:[VehiculoGuardGuard], */
+    canActivate:[VehiculoGuardGuard],
   },
   {
     path:'datos-alquilados',
     component:TableVehiculoAdminComponent,
-    /* canActivate:[VehiculoGuardGuard], */
+    canActivate:[VehiculoGuardGuard],
   },
-  {
-    path:'view-profile',
-    component:ViewProfileComponent,
-  },
+
   {
     path:'**',
     redirectTo:'/dashboard'

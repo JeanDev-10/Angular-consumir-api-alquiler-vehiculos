@@ -8,11 +8,12 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
-  User!:UserI
+  User:any=null
   constructor(private readonly authService:AuthService){}
   ngOnInit(): void {
-    this.authService.userData().subscribe(data => {
-      this.User=data
+    this.authService.userData().subscribe((data:any) => {
+      this.User=data.user
+      console.log(this.User)
     })
   }
 

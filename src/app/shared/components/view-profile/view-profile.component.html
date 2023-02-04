@@ -1,10 +1,10 @@
-<div class="card shadow w-75  mx-auto mt-5">
+<div class="card shadow w-75  mx-auto mt-5" *ngIf="User!=null">
   <div class="card-body">
     <div class="row  d-flex justify-content-around align-items-center">
       <div class="col-md-7 col-12 mx-auto">
         <img
         class="img-fluid"
-          [src]="User.user.rol==='cliente'?'https://mir-s3-cdn-cf.behance.net/projects/404/22328711.54a2f9e311082.jpg':'https://i.pinimg.com/736x/b4/68/b2/b468b23f8fa6a1517fd72381b8b4df49.jpg'"
+          [src]="User.rol==='cliente'?'https://mir-s3-cdn-cf.behance.net/projects/404/22328711.54a2f9e311082.jpg':'https://i.pinimg.com/736x/b4/68/b2/b468b23f8fa6a1517fd72381b8b4df49.jpg'"
           alt=""
         />
       </div>
@@ -16,7 +16,7 @@
               class="form-control is-valid"
               disabled
               id="floatingInput"
-              [value]="User.user.nombre_usuario|titlecase"
+              [value]="User.nombre_usuario|titlecase"
               placeholder="Nombre"
             />
             <label for="floatingInput" class="form-label"><i class="bi bi-person"></i> Nombre</label>
@@ -26,7 +26,7 @@
               type="text"
               class="form-control is-valid"
               disabled
-              [value]="User.user.email_usuario"
+              [value]="User.email_usuario"
               placeholder="Email"
             />
             <label for="floatingInput" class="form-label"><i class="bi bi-envelope"></i> Email</label>
@@ -36,7 +36,7 @@
               type="text"
               class="form-control is-valid"
               disabled
-              [value]="User.user.cedula_usuario"
+              [value]="User.cedula_usuario"
               placeholder="Cedula"
             />
             <label for="floatingInput" class="form-label"><i class="bi bi-credit-card"></i> Cedula</label>
@@ -46,7 +46,7 @@
               type="text"
               class="form-control is-valid"
               disabled
-              [value]="User.user.rol|titlecase"
+              [value]="User.rol|titlecase"
               placeholder="Rol"
             />
             <label for="floatingInput" class="form-label"><i class="bi bi-cone"></i> Rol</label>

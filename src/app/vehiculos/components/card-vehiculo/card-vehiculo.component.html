@@ -49,7 +49,7 @@
         </div>
         <div *ngIf="user?.user?.rol == 'cliente'" class="card-footer">
           <button
-            class="btn btn-sm btn-outline-info"
+            class="btn btn-sm btn-outline-info d-block w-50 mx-auto"
             [routerLink]="['/dashboard/vehiculos/alquilar/', auto.id]"
           >
           <i class="bi bi-credit-card"></i> Alquilar

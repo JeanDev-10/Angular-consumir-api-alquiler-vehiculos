@@ -27,22 +27,17 @@ export class VehiculoGuardGuard implements CanActivate {
     | UrlTree {
       console.log("admin guard")
 
-    if (this.permission()) {
-      return true;
-    }
-    return false;
+    this.permission()
+    return true;
   }
-  permission(): boolean {
+  permission(): void {
     this.authService.userData().subscribe((data) => {
       this.role = data.user.rol;
-
+      if (this.role !== 'admin') {
+        this.router.navigate(['/dashboard/vehiculos'])
+      }
     });
-    if (this.role == 'admin') {
-      return true;
-    } else {
-      this.router.navigate(['/dashboard'])
-      return false;
-    }
+
 
   }
 }

@@ -16,21 +16,18 @@ export class VehiculoClienteGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       console.log("cliente guard")
       console.log(this.permission())
-      if (this.permission()) {
-        return true;
-      }
-      this.router.navigate(['/dashboard'])
-      return false;
+      this.permission()
+      return true;
 
     }
-    permission(): boolean {
+    permission(): void {
       this.authService.userData().subscribe((data) => {
         this.role = data.user.rol;
+        if (this.role !== 'cliente') {
+          this.router.navigate(['/dashboard/vehiculos'])
+
+        }
       });
-      if (this.role == 'cliente') {
-        return true;
-      } else  {
-        return false;
-      }
+
     }
   }
