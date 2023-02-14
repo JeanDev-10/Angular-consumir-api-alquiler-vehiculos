@@ -35,7 +35,7 @@
                 routerLink="vehiculos"
                 class="dropdown-item"
                 routerLinkActive="active"
-                ><i class="bi bi-eye"></i> Ver Vehiculos</a
+                ><i class="bi bi-eye"></i>Ver Vehiculos</a
               >
             </li>
             <li *ngIf="user?.user?.rol == 'cliente'">
@@ -44,7 +44,7 @@
                 routerLink="mis-vehiculos"
                 routerLinkActive="active"
                 ariaCurrentWhenActive="page"
-                ><i class="bi bi-eye"></i> mis Vehiculos</a
+                ><i class="bi bi-eye"></i>Mis Vehiculos</a
               >
             </li>
             <li>
@@ -53,7 +53,7 @@
                 routerLink="/dashboard/vehiculos/create"
                 class="dropdown-item"
                 ><i class="bi bi-car-front-fill"></i
-                ><i class="bi bi-plus"></i>crear vehiculos</a
+                ><i class="bi bi-plus"></i>Crear vehiculos</a
               >
             </li>
             <li *ngIf="user?.user?.rol == 'admin'">
@@ -61,7 +61,7 @@
                 routerLink="vehiculos-alquilados"
                 class="dropdown-item"
                 routerLinkActive="active"
-                ><i class="bi bi-eye"></i> Vehiculos alquilados</a
+                ><i class="bi bi-eye"></i>Vehiculos alquilados</a
               >
             </li>
             <li *ngIf="user?.user?.rol == 'admin'">
@@ -96,14 +96,13 @@
               </a>
             </li>
             <li>
-              <a href="#" class="dropdown-item" routerLink="view-profile"
+              <a  class="dropdown-item" routerLink="view-profile"
                 ><i class="bi bi-person-gear"></i> Profile</a
               >
             </li>
             <li class="">
               <button
                 type="button"
-                routerLink="vehiculos-alquilados"
                 class="dropdown-item text-danger"
                 (click)="logout()"
               >

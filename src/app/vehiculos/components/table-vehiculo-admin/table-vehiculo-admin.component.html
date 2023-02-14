@@ -34,21 +34,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let a of alquilados|filter:searchText" >
-        <th scope="row">{{ a.nombre_usuario |titlecase }}</th>
-        <th>{{ a.cedula_usuario }}</th>
-        <th>{{ a.email_usuario }}</th>
-        <td>{{ a.fecha_alquiler }}</td>
-       <td>{{ a.tiempo_alquiler }}</td>
-         <td> En {{ convertTime(a.tiempo_alquiler,a.id) }} </td>
-        <td>{{ a.marca_vehiculo | titlecase }}</td>
-        <td>{{ a.modelo_vehiculo | titlecase }}</td>
-        <td>{{ a.precio_pagar | currency }}</td>
-        <td >
+        <th scope="row" class="text-center">{{ a.nombre_usuario |titlecase }}</th>
+        <th class="text-center">{{ a.cedula_usuario }}</th>
+        <th class="text-center">{{ a.email_usuario }}</th>
+        <td class="text-center">{{ a.fecha_alquiler }}</td>
+       <td class="text-center">{{ a.tiempo_alquiler }}</td>
+         <td class="text-center"> En {{ convertTime(a.tiempo_alquiler,a.id) }} </td>
+        <td class="text-center">{{ a.marca_vehiculo | titlecase }}</td>
+        <td class="text-center">{{ a.modelo_vehiculo | titlecase }}</td>
+        <td class="text-center">{{ a.precio_pagar | currency }}</td>
+        <td  class="text-center">
           <div class="w-100 mx-auto">
             <img [src]="a.url_vehiculo" alt="" class="img-fluid w-100" style="object-fit: cover;height:5em;">
           </div>
         </td>
-        <td>
+        <td class="text-center">
           <button type="button" (click)="eliminarAlquilado(a.id)" class="btn btn-sm btn-outline-danger">Eliminar</button>
         </td>
         <!--  -->

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-register',
@@ -9,7 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
   constructor(private fb:FormBuilder,private readonly authService:AuthService,
-    private readonly router:Router){}
+    private readonly router:Router,
+    private readonly sweetAlertService:SweetAlertService){}
   registerForm!:FormGroup
   ngOnInit():void{
     this.registerForm= this.fb.group({
@@ -26,6 +28,7 @@ export class RegisterComponent {
     if(this.registerForm.valid){
       this.authService.register(this.registerForm.value).subscribe((data:any)=>{
         console.log(data)
+        this.sweetAlertService.getSuccess('Registrado Correctamente!')
           this.router.navigate(['/auth/login']);
       }/* ,(error:any)=>{
         console.log(error.error.messages)

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserI } from 'src/app/auth/interface/user.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nav',
@@ -14,8 +15,14 @@ export class NavComponent {
   logout(){
     this.authService.logout().subscribe((data:any)=>{
       localStorage.removeItem('token');
-      console.log(data)
-      this.router.navigate(['/auth/login']);
+      Swal.fire({
+        title: 'Deslogeado correctamente.',
+        width: 600,
+        icon:'success',
+        padding: '3em',
+        color: '#716add',
+      })
+      this.router.navigate(['auth/login']);
     })
   }
 }

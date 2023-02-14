@@ -23,7 +23,7 @@ export class PermissionGuard implements CanActivate  {
       return true
     }
     console.log("redireccionar")
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['auth/login']);
     return false;
   }
 

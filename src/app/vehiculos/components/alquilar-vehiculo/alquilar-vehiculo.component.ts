@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
+import Swal from 'sweetalert2';
 import {  VehiculoI } from '../../interfaces/vehiculos.interface';
 import { VehiculoService } from '../../services/vehiculo.service';
 @Component({
@@ -10,7 +12,7 @@ import { VehiculoService } from '../../services/vehiculo.service';
   styleUrls: ['./alquilar-vehiculo.component.scss'],
 })
 export class AlquilarVehiculoComponent implements OnInit {
-  valor!:number
+  valor:number=0
   fecha!:any
   vehiculoAlquilar!:any
   vehiculoAlquilerForm!:FormGroup
@@ -18,7 +20,8 @@ export class AlquilarVehiculoComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly vehiculoService: VehiculoService,
     private readonly fb:FormBuilder,
-    private readonly router:Router
+    private readonly router:Router,
+    private readonly sweetAlertService:SweetAlertService
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
@@ -26,7 +29,8 @@ export class AlquilarVehiculoComponent implements OnInit {
         this.vehiculoService.getVehiculo(params.id).subscribe((res:VehiculoI) => {
           this.vehiculoAlquilar=res.vehiculos
           if(this.vehiculoAlquilar.estado==0){
-             this.router.navigate(['/dashboard/vehiculos']);
+            this.sweetAlertService.getError('Vehiculo ya alquilado')
+             this.router.navigate(['dashboard/vehiculos']);
           }
           console.log(this.vehiculoAlquilar);
         });
@@ -49,19 +53,40 @@ export class AlquilarVehiculoComponent implements OnInit {
       console.log("alquilar vehiculo"+id)
       this.vehiculoService.alquilarVehiculo(alquilar).subscribe(data=>{
         console.log(data)
-        alert('alquilado correctamente')
-        this.router.navigate(['/dashboard/mis-vehiculos']);
+        this.sweetAlertService.getSuccess('Alquilado correctamente');
+
+        this.router.navigate(['dashboard/mis-vehiculos']);
       })
     }
   }
   onInputHours(){
-    const horas=this.calculateHours()
-    if(horas<0){
-      this.valor=horas*(-10);
-    }else{
-      alert('error de validacion')
-      this.vehiculoAlquilerForm.reset();
+    const actual:any=moment()
+    if(moment(this.vehiculoAlquilerForm.get('fecha_alquiler')?.value).diff(actual._d,'days')<0){
+      console.log("salta validacion de dias")
+        this.vehiculoAlquilerForm.reset();
+        /* alert('inserte fechas validas') */
+        this.sweetAlertService.getError('Inserte datos correctos')
+        this.valor=0
     }
+    else if(moment(this.vehiculoAlquilerForm.get('fecha_alquiler')?.value).diff(actual._d,'hours')<0){
+      console.log("salta validacion de horas")
+        this.vehiculoAlquilerForm.reset();
+        /* alert('inserte fechas validas') */
+        this.sweetAlertService.getError('Inserte datos correctos')
+        this.valor=0
+    }
+      else if(this.vehiculoAlquilerForm.get('fecha_alquiler')?.value &&this.vehiculoAlquilerForm.get('tiempo_alquiler')?.value){
+        const horas=this.calculateHours()
+      if(horas<0){
+        this.valor=horas*(-10);
+      }else{
+        this.sweetAlertService.getError('Inserte datos correctos')
+        /* alert('inserte fechas validas') */
+        this.valor=0
+        this.vehiculoAlquilerForm.reset();
+      }
+    }
+
   }
   initForm(){
     this.vehiculoAlquilerForm=this.fb.group({

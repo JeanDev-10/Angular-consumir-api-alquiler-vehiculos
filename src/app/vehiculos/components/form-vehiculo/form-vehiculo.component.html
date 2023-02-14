@@ -40,13 +40,13 @@
               class="form-control"
               id="floatingInput"
               [ngClass]="[vehiculoForm.get('marca')?.errors?.['required'] ||
-              vehiculoForm.get('marca')?.errors?.['minlength']
+              vehiculoForm.get('marca')?.errors?.['minlength'] ||vehiculoForm.get('marca')?.errors?.['pattern']
               ? 'is-invalid' : 'is-valid' ]"
               placeholder="Marca"
               formControlName="marca"
             />
             <label for="floatingInput" class="form-label">Marca</label>
-            <div *ngIf="!vehiculoForm.get('marca')?.errors?.['required']&&!vehiculoForm.get('marca')?.errors?.['minlength']" class="valid-feedback">
+            <div *ngIf="!vehiculoForm.get('marca')?.errors?.['required']&&!vehiculoForm.get('marca')?.errors?.['minlength']&&!vehiculoForm.get('marca')?.errors?.['pattern']" class="valid-feedback">
               Looks good!
             </div>
             <div
@@ -60,6 +60,12 @@
               class="form-text text-danger invalid-feedback"
             >
               Debe ser al menos 5 caracteres
+            </div>
+            <div
+              *ngIf="vehiculoForm.get('marca')?.errors?.['pattern']"
+              class="form-text text-danger invalid-feedback"
+            >
+              Debe ser solo letras
             </div>
           </div>
           <div class="row">
@@ -89,7 +95,11 @@
             </div>
           </div>
 
-          <button (click)="onSubmit()" class="btn btn-outline-info" [disabled]="!vehiculoForm.valid"  ><i class="bi bi-save2"> </i>{{Vehiculo?"Editar":"guardar"}}</button>
+          <div *ngIf="vehiculoForm.valid">
+            <button *ngIf="image!=null" (click)="onSubmit()" class="btn btn-outline-info" [disabled]="!vehiculoForm.valid"  ><i class="bi bi-save2"> </i>{{Vehiculo?"Editar":"guardar"}}</button>
+          </div>
+          {{vehiculoForm.valid|json}}
+          {{image!=null}}
         </form>
       </div>
     </div>

@@ -23,7 +23,7 @@ export class Permission2Guard implements CanActivate {
       if(!this.authService.loggedIn()) {
         return true;
       }
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['dashboard']);
       return false;
   }
 

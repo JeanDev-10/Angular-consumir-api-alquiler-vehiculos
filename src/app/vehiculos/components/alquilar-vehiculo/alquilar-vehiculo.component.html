@@ -37,6 +37,7 @@
                   [ngClass]="[vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['required'] ||
                   vehiculoAlquilerForm.get('fecha_alquiler')?.errors?.['min']
                   ? 'is-invalid' : 'is-valid' ]"
+                  (change)="onInputHours()"
                 />
                 <label for="date" class="form-label"
                   ><i class="bi bi-0-square"></i> Fecha Alquiler</label
@@ -103,7 +104,7 @@
           </div>
         </div>
       </div>
-      <div class="card-footer">
+      <div class="card-footer" *ngIf="vehiculoAlquilerForm.valid">
         <button
           type="button"
           (click)="alquilerVehiculo(vehiculoAlquilar?.id)"
