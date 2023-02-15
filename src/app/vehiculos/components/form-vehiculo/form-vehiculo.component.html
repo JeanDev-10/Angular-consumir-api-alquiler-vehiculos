@@ -74,10 +74,10 @@
                 <label class="input-group-text" for="inputGroupFile02"><i class="bi bi-download"></i>Upload Image</label>
                 <input
                   type="file"
+
                   class="form-control "
                   id="inputGroupFile02"
                   formControlName="image"
-
                   accept="image/*"
                   (change)="subiendo($event)"
                 />
@@ -98,8 +98,7 @@
           <div *ngIf="vehiculoForm.valid">
             <button *ngIf="image!=null" (click)="onSubmit()" class="btn btn-outline-info" [disabled]="!vehiculoForm.valid"  ><i class="bi bi-save2"> </i>{{Vehiculo?"Editar":"guardar"}}</button>
           </div>
-          {{vehiculoForm.valid|json}}
-          {{image!=null}}
+
         </form>
       </div>
     </div>

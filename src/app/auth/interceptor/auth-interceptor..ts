@@ -36,17 +36,13 @@ export class AuthInterceptor implements HttpInterceptor {
           this.authService.deleteToken();
           console.log("redireccionar interceptor")
           this.sweetAlertService.getError('Sin permisos');
-          /* Swal.fire({
-            icon: 'error',
-            title: 'Sin permisos',
-            text: 'Sin permisos',
-          }) */
+
           this.router.navigate(['/auth/login']);
         }
 				if (error.status !==200) {
           let mensaje:string="";
           console.error('ERROR DE SERVIDOR', 'top right');
-          console.log(error.error.messages)
+          console.log(error.error)
           if(typeof(error.error)=='object'){
             console.log("es objeto se recorre y todo")
             Object.entries(error.error?.messages).forEach(([key, value]:any) => {
