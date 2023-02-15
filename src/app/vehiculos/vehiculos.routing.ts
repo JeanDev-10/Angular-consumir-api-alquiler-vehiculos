@@ -24,7 +24,7 @@ const routes: Routes = [
     component:ViewProfileComponent,
   },
   {
-    path: 'vehiculos/create',
+    path: 'vehiculos/create',pathMatch:'full',
     component:FormVehiculoComponent,
     canActivate:[VehiculoGuardGuard]
   },

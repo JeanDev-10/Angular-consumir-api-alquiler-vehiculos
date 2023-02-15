@@ -25,6 +25,7 @@
             href="#"
             role="button"
             data-bs-toggle="dropdown"
+            routerLinkActive="active"
             aria-expanded="false"
           >
           <i class="bi bi-ev-front-fill"></i>Vehiculos
@@ -35,6 +36,8 @@
                 routerLink="vehiculos"
                 class="dropdown-item"
                 routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+
                 ><i class="bi bi-eye"></i>Ver Vehiculos</a
               >
             </li>
@@ -50,8 +53,9 @@
             <li>
               <a
                 *ngIf="user?.user?.rol == 'admin'"
-                routerLink="/dashboard/vehiculos/create"
+                routerLink="vehiculos/create"
                 class="dropdown-item"
+                routerLinkActive="active"
                 ><i class="bi bi-car-front-fill"></i
                 ><i class="bi bi-plus"></i>Crear vehiculos</a
               >
@@ -80,13 +84,14 @@
             href="#"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            routerLinkActive="active"
           >
           <i class="bi bi-person-fill"></i>
             Profile
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a *ngIf="user?.user" class="dropdown-item">
+              <a *ngIf="user?.user" class="dropdown-item" >
                 <i class="bi bi-person-fill"></i>
                 {{ user.user.nombre_usuario | titlecase }}-<i
                   class="bi bi-check-circle-fill"
@@ -97,6 +102,7 @@
             </li>
             <li>
               <a  class="dropdown-item" routerLink="view-profile"
+              routerLinkActive="active"
                 ><i class="bi bi-person-gear"></i> Profile</a
               >
             </li>
